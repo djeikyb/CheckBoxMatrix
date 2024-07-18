@@ -1,0 +1,41 @@
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace CheckBoxMatrix;
+
+public class Tile(Matrix matrix) : INotifyPropertyChanged
+{
+    private bool _isChecked;
+
+    public void Tap()
+    {
+        matrix.Tap(this);
+    }
+
+    public required string LabelX { get; init; }
+    public required string LabelY { get; init; }
+    public required int X { get; init; }
+    public required int Y { get; init; }
+
+    public bool IsChecked
+    {
+        get => _isChecked;
+        set => SetField(ref _isChecked, value);
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    {
+        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+        field = value;
+        OnPropertyChanged(propertyName);
+        return true;
+    }
+}

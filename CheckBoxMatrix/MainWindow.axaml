@@ -1,0 +1,215 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Position="0 0"
+        Width="838"
+        Height="569.5"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
+        x:Class="CheckBoxMatrix.MainWindow"
+        xmlns:local="clr-namespace:CheckBoxMatrix"
+        x:DataType="local:MyViewModel"
+        Title="CheckBoxMatrix">
+  <StackPanel Orientation="Horizontal"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+    <!-- <CheckBox -->
+    <!--   Command="{Binding AssignLabel}" -->
+    <!--   CommandParameter="{Binding 1, 2}" -->
+    <!--   /> -->
+
+    <StackPanel Width="65"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+      <Label Content="Grids:"
+             Target="Grids"
+             VerticalAlignment="Center" />
+      <CheckBox Name="Grids"
+                IsChecked="{Binding ShowGridLines}" />
+    </StackPanel>
+
+    <Rectangle VerticalAlignment="Stretch"
+               Fill="#66000000"
+               Width="1"
+               Margin="15 0 15 0" />
+
+    <StackPanel>
+      <TextBlock Text="Want:"
+                 FontSize="32" />
+      <TextBlock Margin="0 0 0 9 "
+                 Width="100"
+                 TextWrapping="Wrap"
+                 Text="Only one box in a column and row can be checked." />
+      <Grid ShowGridLines="{Binding ShowGridLines}"
+            RowDefinitions="* * * *"
+            ColumnDefinitions="auto auto auto auto">
+        <TextBlock Text="L"
+                   Grid.Row="0"
+                   Grid.Column="1" />
+        <TextBlock Text="R"
+                   Grid.Row="0"
+                   Grid.Column="2" />
+        <TextBlock Text="C"
+                   Grid.Row="0"
+                   Grid.Column="3" />
+        <TextBlock Text="1"
+                   Grid.Row="1"
+                   Grid.Column="0" />
+        <TextBlock Text="2"
+                   Grid.Row="2"
+                   Grid.Column="0" />
+        <TextBlock Text="3"
+                   Grid.Row="3"
+                   Grid.Column="0" />
+        <CheckBox Grid.Row="1"
+                  Grid.Column="1"
+                  IsChecked="True" />
+        <CheckBox Grid.Row="1"
+                  Grid.Column="2" />
+        <CheckBox Grid.Row="1"
+                  Grid.Column="3" />
+        <CheckBox Grid.Row="2"
+                  Grid.Column="1" />
+        <CheckBox Grid.Row="2"
+                  Grid.Column="2"
+                  IsChecked="True" />
+        <CheckBox Grid.Row="2"
+                  Grid.Column="3" />
+        <CheckBox Grid.Row="3"
+                  Grid.Column="1" />
+        <CheckBox Grid.Row="3"
+                  Grid.Column="2" />
+        <CheckBox Grid.Row="3"
+                  Grid.Column="3"
+                  IsChecked="True" />
+      </Grid>
+    </StackPanel>
+
+    <Rectangle VerticalAlignment="Stretch"
+               Fill="#66000000"
+               Width="1"
+               Margin="15 0 15 0" />
+
+    <StackPanel>
+      <TextBlock Text="V1:"
+                 HorizontalAlignment="Center"
+                 FontSize="32" />
+
+      <TextBlock Margin="0 0 0 9 "
+                 Width="100"
+                 TextWrapping="Wrap"
+                 Text="This should be a 4x4. The fourth is drawn on top of the third. 🫠" />
+
+      <Grid Name="OuterGrid"
+            ShowGridLines="{Binding ShowGridLines}"
+            RowDefinitions="* * * *"
+            ColumnDefinitions="* * * *">
+        <Grid.Styles>
+          <Style Selector="TextBlock.labelx">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="0 0 6 0" />
+          </Style>
+          <Style Selector="TextBlock.labely">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="0 0 8.5 0" />
+          </Style>
+        </Grid.Styles>
+        <TextBlock Text="a"
+                   Classes="labelx"
+                   Grid.Row="0"
+                   Grid.Column="1" />
+        <TextBlock Text="b"
+                   Classes="labelx"
+                   Grid.Row="0"
+                   Grid.Column="2" />
+        <TextBlock Text="c"
+                   Classes="labelx"
+                   Grid.Row="0"
+                   Grid.Column="3" />
+        <TextBlock Text="x"
+                   Classes="labely"
+                   Grid.Row="1"
+                   Grid.Column="0" />
+        <TextBlock Text="y"
+                   Classes="labely"
+                   Grid.Row="2"
+                   Grid.Column="0" />
+        <TextBlock Text="z"
+                   Classes="labely"
+                   Grid.Row="3"
+                   Grid.Column="0" />
+        <ItemsControl Grid.Row="1"
+                      Grid.RowSpan="3"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="3"
+                      ItemsSource="{Binding Matrix.Tiles}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="local:Tile">
+              <CheckBox IsChecked="{Binding IsChecked}"
+                        Command="{Binding Tap}" />
+              <!-- <CheckBox /> -->
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <Grid Name="InnerGrid"
+                    ShowGridLines="{Binding ShowGridLines}"
+                    RowDefinitions="* * *"
+                    ColumnDefinitions="* * *" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+
+          <ItemsControl.Styles>
+            <Style Selector="ContentPresenter"
+                   x:DataType="local:Tile">
+              <Setter Property="Grid.Row"
+                      Value="{Binding Y}" />
+              <Setter Property="Grid.Column"
+                      Value="{Binding X}" />
+            </Style>
+          </ItemsControl.Styles>
+        </ItemsControl>
+
+      </Grid>
+
+      <TextBlock Margin="0 0 0 9 "
+                 Width="100"
+                 TextWrapping="Wrap"
+                 Text="Also, there's two grids that kiiiinda overlap. One for labels, another for the boxes." />
+
+    </StackPanel>
+
+    <Rectangle VerticalAlignment="Stretch"
+               Fill="#66000000"
+               Width="1"
+               Margin="15 0 15 0" />
+
+    <StackPanel>
+      <TextBlock Text="V2:"
+                 HorizontalAlignment="Center"
+                 FontSize="32" />
+      <TextBlock Margin="0 0 0 9 "
+                 Width="100"
+                 TextWrapping="Wrap"
+                 Text="No xaml, only code behind. Which is bad, right?" />
+      <local:MatrixNoXaml Matrix="{Binding Matrix}"
+                          ShowGridLines="{Binding ShowGridLines}" />
+      <TextBlock Margin="0 0 0 9 "
+                 Width="100"
+                 TextWrapping="Wrap"
+                 Text="But just one grid, hurray!" />
+    </StackPanel>
+
+  </StackPanel>
+</Window>
