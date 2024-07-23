@@ -61,12 +61,12 @@ public class MatrixTests(ITestOutputHelper testOutputHelper) : IDisposable
     public void Dispose()
     {
         if (_matrix is null) return;
-        foreach (var g in _matrix.Tiles.GroupBy(tile => tile.LabelY))
+        foreach (var g in _matrix.Tiles.GroupBy(tile => tile.Y))
         {
             g.Where(tile => tile.IsChecked).Should().HaveCountLessOrEqualTo(1);
         }
 
-        foreach (var g in _matrix.Tiles.GroupBy(tile => tile.LabelX))
+        foreach (var g in _matrix.Tiles.GroupBy(tile => tile.X))
         {
             g.Where(tile => tile.IsChecked).Should().HaveCountLessOrEqualTo(1);
         }

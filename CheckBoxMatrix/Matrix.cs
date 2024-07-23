@@ -26,8 +26,6 @@ public class Matrix
                 {
                     X = x,
                     Y = y,
-                    LabelX = xAxisLabels[x],
-                    LabelY = yAxisLabels[y],
                 };
                 _tiles.Add(tile);
             }
@@ -49,15 +47,11 @@ public class Matrix
     public string Ascii()
     {
         var ct = new ConsoleTable(new ConsoleTableOptions { Columns = ["x", ..XAxisLabels], EnableCount = true, });
-        foreach (var labelY in YAxisLabels)
+        for (var yLabelIndex = 0; yLabelIndex < YAxisLabels.Count; yLabelIndex++)
         {
-            var l = new List<string>();
-            l.Add(labelY);
-            foreach (var tile in _tiles.Where(t => labelY.Equals(t.LabelY)))
-            {
-                l.Add(tile.IsChecked ? "X" : "-");
-            }
-
+            var labelY = YAxisLabels[yLabelIndex];
+            var l = new List<string> { labelY };
+            l.AddRange(_tiles.Where(t => yLabelIndex.Equals(t.Y)).Select(tile => tile.IsChecked ? "X" : "-"));
             ct.AddRow([..l]);
         }
 
@@ -84,7 +78,9 @@ public class Matrix
 
     public void Tap(string x, string y)
     {
-        var found = Tiles.FirstOrDefault(tile => tile.LabelX.Equals(x) && tile.LabelY.Equals(y));
+        var ix = XAxisLabels.IndexOf(x);
+        var iy = YAxisLabels.IndexOf(y);
+        var found = Tiles.FirstOrDefault(tile => tile.X == ix && tile.Y == iy);
         if (found is null) throw new Exception($"Either label x '{x}' or label y '{y}' is not in matrix.");
         found.IsChecked = !found.IsChecked;
         Tap(found);

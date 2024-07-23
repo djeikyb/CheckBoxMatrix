@@ -13,8 +13,6 @@ public class Tile(Matrix matrix) : INotifyPropertyChanged
         matrix.Tap(this);
     }
 
-    public required string LabelX { get; init; }
-    public required string LabelY { get; init; }
     public required int X { get; init; }
     public required int Y { get; init; }
 
