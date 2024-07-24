@@ -3,5 +3,6 @@
   <PropertyGroup>
     <AvaloniaVersion>11.0.11</AvaloniaVersion>
     <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 </Project>
