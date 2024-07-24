@@ -1,16 +1,21 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Reactive;
+using R3;
 
 namespace CheckBoxMatrix;
 
 public class MatrixNoXaml : UserControl
 {
+    private IDisposable _disposable = Disposable.Empty;
     public MatrixNoXaml()
     {
         MatrixProperty.Changed.AddClassHandler<MatrixNoXaml, Matrix?>((sender, args) =>
         {
+            _disposable.Dispose();
             var m = args.NewValue.Value;
             if (m is null) return;
 
@@ -63,7 +68,15 @@ public class MatrixNoXaml : UserControl
             foreach (var tile in m.Tiles)
             {
                 var box = new CheckBox();
-                box.Bind(ToggleButton.IsCheckedProperty, new Binding { Source = tile, Path = nameof(tile.IsChecked) });
+
+                _disposable = Disposable.Combine(_disposable, box.GetObservable(ToggleButton.IsCheckedProperty).Subscribe(new AnonymousObserver<bool?>(b =>
+                {
+                    tile.IsChecked = b ?? false;
+                })));
+
+                var obv = tile.ObservePropertyChanged(t => t.IsChecked).Select(b => (bool?)b).AsSystemObservable();
+                _disposable = Disposable.Combine(_disposable, box.Bind(ToggleButton.IsCheckedProperty, obv));
+
                 box.Bind(Button.CommandProperty, new Binding { Source = tile, Path = nameof(tile.Tap) });
                 Grid.SetColumn(box, tile.X + 1); // +1 to leave room for label
                 Grid.SetRow(box, tile.Y + 1); // +1 to leave room for label

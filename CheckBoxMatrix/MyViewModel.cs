@@ -8,7 +8,7 @@ namespace CheckBoxMatrix;
 public class MyViewModel : INotifyPropertyChanged
 {
     private Matrix _matrix;
-    private bool _showGridLines = true;
+    private bool _showGridLines = false;
 
     public MyViewModel()
     {
