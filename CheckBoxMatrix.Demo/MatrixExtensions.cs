@@ -8,7 +8,8 @@ public static class MatrixExtensions
 {
     public static string Ascii(this Matrix matrix)
     {
-        var ct = new ConsoleTable(new ConsoleTableOptions { Columns = ["x", ..matrix.XAxisLabels], EnableCount = true, });
+        var ct = new ConsoleTable(
+            new ConsoleTableOptions { Columns = ["x", ..matrix.XAxisLabels], EnableCount = true, });
         for (var yLabelIndex = 0; yLabelIndex < matrix.YAxisLabels.Count; yLabelIndex++)
         {
             var labelY = matrix.YAxisLabels[yLabelIndex];
@@ -19,5 +20,4 @@ public static class MatrixExtensions
 
         return ct.ToMinimalString();
     }
-
 }

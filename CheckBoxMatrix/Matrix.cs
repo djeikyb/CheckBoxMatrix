@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace CheckBoxMatrix;
 
 public delegate void MatrixChangedEventHandler(object? sender, MatrixChangedEventArgs e);
@@ -21,11 +17,7 @@ public class Matrix
         {
             for (var y = 0; y < yAxisLabels.Count; y++)
             {
-                var tile = new Tile(this)
-                {
-                    X = x,
-                    Y = y,
-                };
+                var tile = new Tile(this) { X = x, Y = y, };
                 _tiles.Add(tile);
             }
         }
@@ -48,9 +40,10 @@ public class Matrix
         var col = Tiles.Where(t => t.X == tile.X);
         foreach (var t in col)
         {
-            if (t == tile) continue ;
+            if (t == tile) continue;
             t.IsChecked = false;
         }
+
         var row = Tiles.Where(t => t.Y == tile.Y);
         foreach (var t in row)
         {

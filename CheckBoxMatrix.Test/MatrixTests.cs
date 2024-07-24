@@ -51,10 +51,10 @@ public class MatrixTests(ITestOutputHelper testOutputHelper) : IDisposable
     public void TryToDupeWithinRow4x4()
     {
         _matrix = new Matrix(xAxisLabels: ["1", "2", "3", "4"], yAxisLabels: ["L", "R", "C", "LFE"]);
-        _matrix.Tap("1","L");
-        _matrix.Tap("2","R");
-        _matrix.Tap("3","C");
-        _matrix.Tap("4","LFE");
+        _matrix.Tap("1", "L");
+        _matrix.Tap("2", "R");
+        _matrix.Tap("3", "C");
+        _matrix.Tap("4", "LFE");
         PrintBefore();
         PrintAfter();
     }
