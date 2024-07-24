@@ -3,27 +3,28 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Matrix = CheckBoxMatrix.Model.Matrix;
 
-namespace CheckBoxMatrix;
+namespace CheckBoxMatrix.Control;
 
-public class MatrixNoXaml : UserControl
+public class CheckBoxMatrix : UserControl
 {
-    public MatrixNoXaml()
+    public CheckBoxMatrix()
     {
         _xAxisLabels = [];
         _yAxisLabels = [];
 
-        XAxisLabelsProperty.Changed.AddClassHandler<MatrixNoXaml, IEnumerable<string>>((_, _) =>
+        XAxisLabelsProperty.Changed.AddClassHandler<CheckBoxMatrix, IEnumerable<string>>((_, _) =>
         {
             Matrix = new Matrix(_xAxisLabels.ToList(), _yAxisLabels.ToList());
         });
 
-        YAxisLabelsProperty.Changed.AddClassHandler<MatrixNoXaml, IEnumerable<string>>((_, _) =>
+        YAxisLabelsProperty.Changed.AddClassHandler<CheckBoxMatrix, IEnumerable<string>>((_, _) =>
         {
             Matrix = new Matrix(_xAxisLabels.ToList(), _yAxisLabels.ToList());
         });
 
-        MatrixProperty.Changed.AddClassHandler<MatrixNoXaml, Matrix?>((sender, args) =>
+        MatrixProperty.Changed.AddClassHandler<CheckBoxMatrix, Matrix?>((sender, args) =>
         {
             var m = args.NewValue.Value;
             if (m is null) return;
@@ -53,7 +54,7 @@ public class MatrixNoXaml : UserControl
                 Mappings = set;
             };
 
-            MappingsProperty.Changed.AddClassHandler<MatrixNoXaml, HashSet<(string, string)>>((_, args) =>
+            MappingsProperty.Changed.AddClassHandler<CheckBoxMatrix, HashSet<(string, string)>>((_, args) =>
             {
                 var sb = new StringBuilder();
                 foreach (string s in args.NewValue.Value.Select(x => $"[{x.Item1},{x.Item2}]")) sb.Append(s);
@@ -122,7 +123,7 @@ public class MatrixNoXaml : UserControl
 
 
     public static readonly StyledProperty<bool> ShowGridLinesProperty
-        = AvaloniaProperty.Register<MatrixNoXaml, bool>(nameof(ShowGridLines));
+        = AvaloniaProperty.Register<CheckBoxMatrix, bool>(nameof(ShowGridLines));
 
     public bool ShowGridLines
     {
@@ -132,7 +133,7 @@ public class MatrixNoXaml : UserControl
 
 
     public static readonly StyledProperty<Matrix?> MatrixProperty
-        = AvaloniaProperty.Register<MatrixNoXaml, Matrix?>(nameof(Matrix));
+        = AvaloniaProperty.Register<CheckBoxMatrix, Matrix?>(nameof(Matrix));
 
     public Matrix? Matrix
     {
@@ -143,8 +144,8 @@ public class MatrixNoXaml : UserControl
 
     private IEnumerable<string> _xAxisLabels;
 
-    public static readonly DirectProperty<MatrixNoXaml, IEnumerable<string>> XAxisLabelsProperty =
-        AvaloniaProperty.RegisterDirect<MatrixNoXaml, IEnumerable<string>>(
+    public static readonly DirectProperty<CheckBoxMatrix, IEnumerable<string>> XAxisLabelsProperty =
+        AvaloniaProperty.RegisterDirect<CheckBoxMatrix, IEnumerable<string>>(
             unsetValue: ["a,b,c"],
             name: "XAxisLabels", getter: o => o.XAxisLabels, setter: (o, v) => o.XAxisLabels = v);
 
@@ -157,8 +158,8 @@ public class MatrixNoXaml : UserControl
 
     private IEnumerable<string> _yAxisLabels;
 
-    public static readonly DirectProperty<MatrixNoXaml, IEnumerable<string>> YAxisLabelsProperty =
-        AvaloniaProperty.RegisterDirect<MatrixNoXaml, IEnumerable<string>>(
+    public static readonly DirectProperty<CheckBoxMatrix, IEnumerable<string>> YAxisLabelsProperty =
+        AvaloniaProperty.RegisterDirect<CheckBoxMatrix, IEnumerable<string>>(
             unsetValue: ["1", "2", "3"],
             name: "YAxisLabels", getter: o => o.YAxisLabels, setter: (o, v) => o.YAxisLabels = v);
 
@@ -170,7 +171,7 @@ public class MatrixNoXaml : UserControl
 
 
     public static readonly StyledProperty<HashSet<(string x, string y)>> MappingsProperty =
-        AvaloniaProperty.Register<MatrixNoXaml, HashSet<(string x, string y)>>(
+        AvaloniaProperty.Register<CheckBoxMatrix, HashSet<(string x, string y)>>(
             nameof(Mappings), defaultValue: [], defaultBindingMode: BindingMode.OneWayToSource);
 
     public HashSet<(string x, string y)> Mappings

@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CheckBoxMatrix;
+namespace CheckBoxMatrix.Model;
 
 public class Tile(Matrix matrix) : INotifyPropertyChanged
 {

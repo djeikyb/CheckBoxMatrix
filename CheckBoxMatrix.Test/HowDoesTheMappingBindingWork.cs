@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Data;
+using CheckBoxMatrix.Control;
 using CheckBoxMatrix.Demo;
 using FluentAssertions;
 
@@ -10,10 +11,10 @@ public class HowDoesTheMappingBindingWork
     [Fact]
     public void OneWayToSource()
     {
-        var control = new MatrixNoXaml();
+        var control = new Control.CheckBoxMatrix();
         var vm = new MyViewModel();
         var binding = new Binding { Source = vm, Path = nameof(vm.Mappings), Mode = BindingMode.OneWayToSource };
-        control.Bind(MatrixNoXaml.MappingsProperty, binding);
+        control.Bind(Control.CheckBoxMatrix.MappingsProperty, binding);
 
         control.Mappings.Should().BeEmpty();
         vm.Mappings.Should().BeEmpty();

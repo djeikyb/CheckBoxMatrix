@@ -3,7 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CheckBoxMatrix.Demo"
-        xmlns:matrix="clr-namespace:CheckBoxMatrix;assembly=CheckBoxMatrix"
+        xmlns:model="clr-namespace:CheckBoxMatrix.Model;assembly=CheckBoxMatrix"
+        xmlns:control="clr-namespace:CheckBoxMatrix.Control;assembly=CheckBoxMatrix"
         Position="0 0"
         Width="838"
         Height="569.5"
@@ -155,7 +156,7 @@
                       Grid.ColumnSpan="3"
                       ItemsSource="{Binding Matrix.Tiles,FallbackValue=[]}">
           <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="matrix:Tile">
+            <DataTemplate DataType="model:Tile">
               <CheckBox IsChecked="{Binding IsChecked}"
                         Command="{Binding Tap}" />
               <!-- <CheckBox /> -->
@@ -173,7 +174,7 @@
 
           <ItemsControl.Styles>
             <Style Selector="ContentPresenter"
-                   x:DataType="matrix:Tile">
+                   x:DataType="model:Tile">
               <Setter Property="Grid.Row"
                       Value="{Binding Y}" />
               <Setter Property="Grid.Column"
@@ -205,7 +206,7 @@
                  TextWrapping="Wrap"
                  Text="No xaml, only code behind. Which is bad, right?" />
       <!-- matrix prop is only here so both v1 and v2 are bound to the same instance -->
-      <matrix:MatrixNoXaml Matrix="{Binding Matrix,Mode=OneWayToSource}"
+      <control:CheckBoxMatrix Matrix="{Binding Matrix,Mode=OneWayToSource}"
                            XAxisLabels="{Binding XAxisLabels}"
                            YAxisLabels="{Binding YAxisLabels}"
                            Mappings="{Binding Mappings}"

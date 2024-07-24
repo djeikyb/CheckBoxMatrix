@@ -1,4 +1,4 @@
-namespace CheckBoxMatrix;
+namespace CheckBoxMatrix.Model;
 
 public delegate void MatrixChangedEventHandler(object? sender, MatrixChangedEventArgs e);
 

@@ -1,4 +1,5 @@
 using CheckBoxMatrix.Demo;
+using CheckBoxMatrix.Model;
 using FluentAssertions;
 using Xunit.Abstractions;
 
