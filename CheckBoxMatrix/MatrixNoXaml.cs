@@ -14,7 +14,7 @@ public class MatrixNoXaml : UserControl
             var m = args.NewValue.Value;
             if (m is null) return;
 
-            ShowGridLines = true; // why doesn't the grid redraw when this prop changes?
+            ShowGridLines = false; // why doesn't the grid redraw when this prop changes?
             var grid = new Grid();
             grid.Bind(Grid.ShowGridLinesProperty, new Binding { Source = this, Path = nameof(ShowGridLinesProperty) });
             grid.ShowGridLines = ShowGridLines; // why do i need this to get gridlines drawn?
@@ -41,6 +41,7 @@ public class MatrixNoXaml : UserControl
                 var label = m.XAxisLabels[i];
                 var text = new TextBlock();
                 text.Text = label;
+                text.Classes.Add("XAxisLabel");
                 Grid.SetRow(text, 0);
                 Grid.SetColumn(text, i + 1); // +1 to skip top left corner
                 grid.Children.Add(text);
@@ -52,6 +53,7 @@ public class MatrixNoXaml : UserControl
                 var label = m.YAxisLabels[i];
                 var text = new TextBlock();
                 text.Text = label;
+                text.Classes.Add("YAxisLabel");
                 Grid.SetColumn(text, 0);
                 Grid.SetRow(text, i + 1); // +1 to skip top left corner
                 grid.Children.Add(text);

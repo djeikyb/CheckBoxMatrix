@@ -1,10 +1,54 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CheckBoxMatrix"
              x:Class="CheckBoxMatrix.App"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+  <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
-    <Application.Styles>
-        <FluentTheme />
-    </Application.Styles>
+  <Application.Styles>
+    <Style Selector="local|MatrixNoXaml CheckBox">
+      <Setter Property="HorizontalAlignment"
+              Value="Center">
+      </Setter>
+      <Setter Property="Margin"
+              Value="0 0 0 0" />
+      <Setter Property="Padding"
+              Value="0 0 0 0" />
+      <Setter Property="MinHeight"
+              Value="32" />
+      <Setter Property="MinWidth"
+              Value="32" />
+    </Style>
+    <Style Selector="local|MatrixNoXaml CheckBox > Grid">
+      <Setter Property="HorizontalAlignment"
+              Value="Center" />
+      <Setter Property="VerticalAlignment"
+              Value="Center" />
+      <!-- <Setter Property="MaxHeight" -->
+      <!--         Value="20" /> -->
+      <!-- <Setter Property="MaxWidth" -->
+      <!--         Value="20" /> -->
+    </Style>
+    <Style Selector="TextBlock.YAxisLabel">
+      <Setter Property="HorizontalAlignment"
+              Value="Center" />
+      <Setter Property="VerticalAlignment"
+              Value="Center" />
+      <Setter Property="Margin"
+              Value="0 0 3 0" />
+      <Setter Property="Padding"
+              Value="0 0 0 0" />
+    </Style>
+    <Style Selector="TextBlock.XAxisLabel">
+      <Setter Property="HorizontalAlignment"
+              Value="Center" />
+      <Setter Property="VerticalAlignment"
+              Value="Center" />
+      <Setter Property="Margin"
+              Value="0 0 0 0" />
+      <Setter Property="Padding"
+              Value="0 0 0 0" />
+    </Style>
+    <FluentTheme />
+  </Application.Styles>
 </Application>
