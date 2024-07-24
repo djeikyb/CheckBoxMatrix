@@ -10,6 +10,7 @@
         d:DesignHeight="450"
         x:Class="CheckBoxMatrix.MainWindow"
         xmlns:local="clr-namespace:CheckBoxMatrix"
+        xmlns:checkBoxMatrix="clr-namespace:CheckBoxMatrix;assembly=ClassLibrary1"
         x:DataType="local:MyViewModel"
         Title="CheckBoxMatrix">
   <StackPanel Orientation="Horizontal"
@@ -154,7 +155,7 @@
                       Grid.ColumnSpan="3"
                       ItemsSource="{Binding Matrix.Tiles}">
           <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="local:Tile">
+            <DataTemplate DataType="checkBoxMatrix:Tile">
               <CheckBox IsChecked="{Binding IsChecked}"
                         Command="{Binding Tap}" />
               <!-- <CheckBox /> -->
@@ -172,7 +173,7 @@
 
           <ItemsControl.Styles>
             <Style Selector="ContentPresenter"
-                   x:DataType="local:Tile">
+                   x:DataType="checkBoxMatrix:Tile">
               <Setter Property="Grid.Row"
                       Value="{Binding Y}" />
               <Setter Property="Grid.Column"

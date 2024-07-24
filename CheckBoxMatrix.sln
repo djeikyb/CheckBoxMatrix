@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBoxMatrix", "CheckBoxM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBoxMatrix.Test", "CheckBoxMatrix.Test\CheckBoxMatrix.Test.csproj", "{EE1A794E-23BC-4B27-86BB-3552CF57B950}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{B1BC32A6-F25B-4F21-91E2-A51E41B39013}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +46,17 @@ Global
 		{EE1A794E-23BC-4B27-86BB-3552CF57B950}.Release|x64.Build.0 = Release|Any CPU
 		{EE1A794E-23BC-4B27-86BB-3552CF57B950}.Release|x86.ActiveCfg = Release|Any CPU
 		{EE1A794E-23BC-4B27-86BB-3552CF57B950}.Release|x86.Build.0 = Release|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Debug|x64.Build.0 = Debug|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Debug|x86.Build.0 = Debug|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Release|x64.ActiveCfg = Release|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Release|x64.Build.0 = Release|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1BC32A6-F25B-4F21-91E2-A51E41B39013}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
