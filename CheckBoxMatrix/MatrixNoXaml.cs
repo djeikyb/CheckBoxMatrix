@@ -1,3 +1,4 @@
+using System.Text;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -9,10 +10,55 @@ public class MatrixNoXaml : UserControl
 {
     public MatrixNoXaml()
     {
+        _xAxisLabels = [];
+        _yAxisLabels = [];
+
+        XAxisLabelsProperty.Changed.AddClassHandler<MatrixNoXaml, IEnumerable<string>>((_, _) =>
+        {
+            Matrix = new Matrix(_xAxisLabels.ToList(), _yAxisLabels.ToList());
+        });
+
+        YAxisLabelsProperty.Changed.AddClassHandler<MatrixNoXaml, IEnumerable<string>>((_, _) =>
+        {
+            Matrix = new Matrix(_xAxisLabels.ToList(), _yAxisLabels.ToList());
+        });
+
         MatrixProperty.Changed.AddClassHandler<MatrixNoXaml, Matrix?>((sender, args) =>
         {
             var m = args.NewValue.Value;
             if (m is null) return;
+
+            m.MatrixChanged += (m_sender, _) =>
+            {
+                var newmatrix = (Matrix?)m_sender;
+                var set = new HashSet<(string x, string y)>();
+                if (newmatrix is null)
+                {
+                    Mappings = set;
+                    return;
+                }
+
+                var xlabels = XAxisLabels.ToArray();
+                var ylabels = YAxisLabels.ToArray();
+                foreach (var tile in newmatrix.Tiles)
+                {
+                    if (tile.IsChecked)
+                    {
+                        var x = xlabels[tile.X];
+                        var y = ylabels[tile.Y];
+                        set.Add((x: x, y: y));
+                    }
+                }
+
+                Mappings = set;
+            };
+
+            MappingsProperty.Changed.AddClassHandler<MatrixNoXaml, HashSet<(string, string)>>((_, args) =>
+            {
+                var sb = new StringBuilder();
+                foreach (string s in args.NewValue.Value.Select(x => $"[{x.Item1},{x.Item2}]")) sb.Append(s);
+                Console.WriteLine($"⚡️MatrixNoXaml.MappingsProperty: {sb}");
+            });
 
             ShowGridLines = false; // why doesn't the grid redraw when this prop changes?
             var grid = new Grid();
@@ -92,5 +138,44 @@ public class MatrixNoXaml : UserControl
     {
         get => GetValue(MatrixProperty);
         set => SetValue(MatrixProperty, value);
+    }
+
+
+    private IEnumerable<string> _xAxisLabels;
+
+    public static readonly DirectProperty<MatrixNoXaml, IEnumerable<string>> XAxisLabelsProperty =
+        AvaloniaProperty.RegisterDirect<MatrixNoXaml, IEnumerable<string>>(
+            unsetValue: ["a,b,c"],
+            name: "XAxisLabels", getter: o => o.XAxisLabels, setter: (o, v) => o.XAxisLabels = v);
+
+    public IEnumerable<string> XAxisLabels
+    {
+        get => _xAxisLabels;
+        set => SetAndRaise(XAxisLabelsProperty, ref _xAxisLabels, value);
+    }
+
+
+    private IEnumerable<string> _yAxisLabels;
+
+    public static readonly DirectProperty<MatrixNoXaml, IEnumerable<string>> YAxisLabelsProperty =
+        AvaloniaProperty.RegisterDirect<MatrixNoXaml, IEnumerable<string>>(
+            unsetValue: ["1", "2", "3"],
+            name: "YAxisLabels", getter: o => o.YAxisLabels, setter: (o, v) => o.YAxisLabels = v);
+
+    public IEnumerable<string> YAxisLabels
+    {
+        get => _yAxisLabels;
+        set => SetAndRaise(YAxisLabelsProperty, ref _yAxisLabels, value);
+    }
+
+
+    public static readonly StyledProperty<HashSet<(string x, string y)>> MappingsProperty =
+        AvaloniaProperty.Register<MatrixNoXaml, HashSet<(string x, string y)>>(
+            nameof(Mappings), defaultValue: [], defaultBindingMode: BindingMode.OneWayToSource);
+
+    public HashSet<(string x, string y)> Mappings
+    {
+        get => GetValue(MappingsProperty);
+        set => SetValue(MappingsProperty, value);
     }
 }

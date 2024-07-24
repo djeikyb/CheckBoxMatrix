@@ -153,7 +153,7 @@
                       Grid.RowSpan="3"
                       Grid.Column="1"
                       Grid.ColumnSpan="3"
-                      ItemsSource="{Binding Matrix.Tiles}">
+                      ItemsSource="{Binding Matrix.Tiles,FallbackValue=[]}">
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="matrix:Tile">
               <CheckBox IsChecked="{Binding IsChecked}"
@@ -204,8 +204,12 @@
                  Width="100"
                  TextWrapping="Wrap"
                  Text="No xaml, only code behind. Which is bad, right?" />
-      <matrix:MatrixNoXaml Matrix="{Binding Matrix}"
-                          ShowGridLines="{Binding ShowGridLines}" />
+      <!-- matrix prop is only here so both v1 and v2 are bound to the same instance -->
+      <matrix:MatrixNoXaml Matrix="{Binding Matrix,Mode=OneWayToSource}"
+                           XAxisLabels="{Binding XAxisLabels}"
+                           YAxisLabels="{Binding YAxisLabels}"
+                           Mappings="{Binding Mappings}"
+                           ShowGridLines="{Binding ShowGridLines}" />
       <TextBlock Margin="0 0 0 9 "
                  Width="100"
                  TextWrapping="Wrap"
