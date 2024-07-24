@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CheckBoxMatrix\CheckBoxMatrix.csproj" />
+    <ProjectReference Include="..\CheckBoxMatrix.Demo\CheckBoxMatrix.Demo.csproj" />
   </ItemGroup>
 
 </Project>

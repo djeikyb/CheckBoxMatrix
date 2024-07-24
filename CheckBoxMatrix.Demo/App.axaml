@@ -1,16 +1,14 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CheckBoxMatrix"
-             xmlns:checkBoxMatrix="clr-namespace:CheckBoxMatrix;assembly=ClassLibrary1"
-             x:Class="CheckBoxMatrix.App"
+             xmlns:matrix="clr-namespace:CheckBoxMatrix;assembly=CheckBoxMatrix"
+             x:Class="CheckBoxMatrix.Demo.App"
              RequestedThemeVariant="Default">
   <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
   <Application.Styles>
-    <Style Selector="checkBoxMatrix|MatrixNoXaml CheckBox">
+    <Style Selector="matrix|MatrixNoXaml CheckBox">
       <Setter Property="HorizontalAlignment"
-              Value="Center">
-      </Setter>
+              Value="Center" />
       <Setter Property="Margin"
               Value="0 0 0 0" />
       <Setter Property="Padding"
@@ -20,7 +18,7 @@
       <Setter Property="MinWidth"
               Value="32" />
     </Style>
-    <Style Selector="checkBoxMatrix|MatrixNoXaml CheckBox > Grid">
+    <Style Selector="matrix|MatrixNoXaml CheckBox > Grid">
       <Setter Property="HorizontalAlignment"
               Value="Center" />
       <Setter Property="VerticalAlignment"

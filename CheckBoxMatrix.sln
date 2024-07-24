@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBoxMatrix", "CheckBoxMatrix\CheckBoxMatrix.csproj", "{3D99E42B-0FCD-45B7-BAD7-88D6E052D6D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBoxMatrix.Demo", "CheckBoxMatrix.Demo\CheckBoxMatrix.Demo.csproj", "{3D99E42B-0FCD-45B7-BAD7-88D6E052D6D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBoxMatrix.Test", "CheckBoxMatrix.Test\CheckBoxMatrix.Test.csproj", "{EE1A794E-23BC-4B27-86BB-3552CF57B950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{B1BC32A6-F25B-4F21-91E2-A51E41B39013}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBoxMatrix", "CheckBoxMatrix\CheckBoxMatrix.csproj", "{B1BC32A6-F25B-4F21-91E2-A51E41B39013}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution

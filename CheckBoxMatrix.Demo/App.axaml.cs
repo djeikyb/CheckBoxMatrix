@@ -3,7 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using HotAvalonia;
 
-namespace CheckBoxMatrix;
+namespace CheckBoxMatrix.Demo;
 
 public partial class App : Application
 {

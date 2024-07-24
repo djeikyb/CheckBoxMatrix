@@ -1,7 +1,7 @@
 using System;
 using Avalonia;
 
-namespace CheckBoxMatrix;
+namespace CheckBoxMatrix.Demo;
 
 class Program
 {

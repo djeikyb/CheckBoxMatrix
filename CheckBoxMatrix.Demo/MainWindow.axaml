@@ -2,15 +2,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CheckBoxMatrix.Demo"
+        xmlns:matrix="clr-namespace:CheckBoxMatrix;assembly=CheckBoxMatrix"
         Position="0 0"
         Width="838"
         Height="569.5"
         mc:Ignorable="d"
         d:DesignWidth="800"
         d:DesignHeight="450"
-        x:Class="CheckBoxMatrix.MainWindow"
-        xmlns:local="clr-namespace:CheckBoxMatrix"
-        xmlns:checkBoxMatrix="clr-namespace:CheckBoxMatrix;assembly=ClassLibrary1"
+        x:Class="CheckBoxMatrix.Demo.MainWindow"
         x:DataType="local:MyViewModel"
         Title="CheckBoxMatrix">
   <StackPanel Orientation="Horizontal"
@@ -155,7 +155,7 @@
                       Grid.ColumnSpan="3"
                       ItemsSource="{Binding Matrix.Tiles}">
           <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="checkBoxMatrix:Tile">
+            <DataTemplate DataType="matrix:Tile">
               <CheckBox IsChecked="{Binding IsChecked}"
                         Command="{Binding Tap}" />
               <!-- <CheckBox /> -->
@@ -173,7 +173,7 @@
 
           <ItemsControl.Styles>
             <Style Selector="ContentPresenter"
-                   x:DataType="checkBoxMatrix:Tile">
+                   x:DataType="matrix:Tile">
               <Setter Property="Grid.Row"
                       Value="{Binding Y}" />
               <Setter Property="Grid.Column"
@@ -204,7 +204,7 @@
                  Width="100"
                  TextWrapping="Wrap"
                  Text="No xaml, only code behind. Which is bad, right?" />
-      <checkBoxMatrix:MatrixNoXaml Matrix="{Binding Matrix}"
+      <matrix:MatrixNoXaml Matrix="{Binding Matrix}"
                           ShowGridLines="{Binding ShowGridLines}" />
       <TextBlock Margin="0 0 0 9 "
                  Width="100"

@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Layout;
 
-namespace CheckBoxMatrix;
+namespace CheckBoxMatrix.Demo;
 
 public partial class MainWindow : Window
 {

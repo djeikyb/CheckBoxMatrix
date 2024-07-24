@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ConsoleTables;
 
-namespace CheckBoxMatrix;
+namespace CheckBoxMatrix.Demo;
 
 public static class MatrixExtensions
 {
