@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConsoleTables;
 
 namespace CheckBoxMatrix;
 
@@ -43,20 +42,6 @@ public class Matrix
 
     public List<string> XAxisLabels { get; }
     public List<string> YAxisLabels { get; }
-
-    public string Ascii()
-    {
-        var ct = new ConsoleTable(new ConsoleTableOptions { Columns = ["x", ..XAxisLabels], EnableCount = true, });
-        for (var yLabelIndex = 0; yLabelIndex < YAxisLabels.Count; yLabelIndex++)
-        {
-            var labelY = YAxisLabels[yLabelIndex];
-            var l = new List<string> { labelY };
-            l.AddRange(_tiles.Where(t => yLabelIndex.Equals(t.Y)).Select(tile => tile.IsChecked ? "X" : "-"));
-            ct.AddRow([..l]);
-        }
-
-        return ct.ToMinimalString();
-    }
 
     public void Tap(Tile tile)
     {
