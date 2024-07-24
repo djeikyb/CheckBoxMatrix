@@ -1,8 +1,7 @@
 <Project>
   <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
   <PropertyGroup>
-
+    <AvaloniaVersion>11.0.11</AvaloniaVersion>
     <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
-
   </PropertyGroup>
 </Project>
